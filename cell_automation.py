@@ -124,6 +124,7 @@ def main():
  
     # set up animation
     fig, ax = plt.subplots()
+    fig.tight_layout()
     img = ax.imshow(grid, interpolation='nearest', cmap='gray')
     ani = animation.FuncAnimation(fig, update, fargs=(img, grid, N, ),
                                   frames = 10,
@@ -135,11 +136,13 @@ def main():
     if args.movfile:
         ani.save(args.movfile, fps=30, extra_args=['-vcodec', 'libx264'])
  
-    mng = plt.get_current_fig_manager()
-    #mng.full_screen_toggle()
+    manager = plt.get_current_fig_manager()
+    manager.window.showMaximized()
+
+
     plt.axis('off')
     plt.show()
  
 # call main
 if __name__ == '__main__':
-    main() 
+    main()
